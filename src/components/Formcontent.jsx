@@ -295,7 +295,7 @@ const FormCard = () => {
 
   const handleSubmit = async () => {
     axios
-      .post("http://rakshitkaushik.pythonanywhere.com/predict/", {
+      .post("https://rakshitkaushik.pythonanywhere.com/predict/", {
         options: options,
       })
       .then((response) => {
