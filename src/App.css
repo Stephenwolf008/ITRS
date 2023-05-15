@@ -267,6 +267,8 @@ img {
 .email {
   padding-bottom: 15px;
   max-width: 40%;
+  display: flex;
+  justify-content: center;
 }
 .email input {
   padding: 0.5rem;
@@ -276,6 +278,8 @@ img {
 .password {
   padding-bottom: 15px;
   max-width: 40%;
+  display: flex;
+  justify-content: center;
 }
 .password input {
   padding: 0.5rem;
