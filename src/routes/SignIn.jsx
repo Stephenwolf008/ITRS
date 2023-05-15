@@ -75,7 +75,7 @@ const SignIn = () => {
       <div className="box">
         <h1 className="heading">Login</h1>
         {error && <Alert variant="danger">{error}</Alert>}
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} className="container">
           <Form.Group className="email" controlId="formBasicEmail">
             <Form.Control
               type="email"

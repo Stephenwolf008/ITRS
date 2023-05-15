@@ -9,6 +9,12 @@
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 .Navbaritems {
   display: flex;
   justify-content: space-between;
@@ -267,8 +273,6 @@ img {
 .email {
   padding-bottom: 15px;
   max-width: 40%;
-  display: flex;
-  align-self: center;
 }
 .email input {
   padding: 0.5rem;
@@ -278,8 +282,6 @@ img {
 .password {
   padding-bottom: 15px;
   max-width: 40%;
-  display: flex;
-  align-self: center;
 }
 .password input {
   padding: 0.5rem;
