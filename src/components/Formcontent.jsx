@@ -15,6 +15,7 @@ import {
   ItinerarySegment,
   ItinerarySegmentStop,
 } from "@kiwicom/orbit-components";
+import { LoadingButton } from "@mui/lab";
 
 const Input = styled(TextField)(({ theme }) => ({
   "& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button": {
@@ -292,19 +293,22 @@ const FormCard = () => {
   });
 
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
+    setLoading(true);
     axios
       .post("https://rakshitkaushik.pythonanywhere.com/predict/", {
         options: options,
       })
       .then((response) => {
         const responseData = response.data.recommended;
-
         setData(responseData);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
+        setLoading(false);
       });
   };
 
@@ -448,13 +452,14 @@ const FormCard = () => {
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <Button
+                    <LoadingButton
+                      loading={loading}
                       variant="contained"
                       color="primary"
                       onClick={handleSubmit}
                     >
                       Submit
-                    </Button>
+                    </LoadingButton>
                   </Grid>
                 </Grid>
               </CardContent>
