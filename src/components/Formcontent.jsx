@@ -375,7 +375,6 @@ const FormCard = () => {
                 />
               </ItinerarySegment>
             ))}
-            <Button onClick={()=>setData(null)}>Back to Form</Button>
           </Itinerary>
         </>
       ) : (
