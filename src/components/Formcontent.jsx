@@ -304,7 +304,7 @@ const FormCard = () => {
                 options: options,
             })
             .then((response) => {
-                const responseData = response.data.recommended;
+                const responseData = response.data.places_matrix;
                 console.log(response.data)
 //                 setData(responseData);
                 const dayWiseData = groupByDay(responseData);
