@@ -347,27 +347,7 @@ const FormCard = () => {
 
     return (
         <>
-//             {data ? (
-//                 <Box>
-//                     <Itinerary>
-//                         {data.map((location, index) => (
-//                             <ItinerarySegment
-//                                 key={index}
-//                                 label={location.Name}
-//                                 noElevation={false}
-//                             >
-//                                 <ItinerarySegmentStop
-//                                     city={location.Name}
-//                                     station={location.Address}
-//                                     minWidth={60}
-//                                 />
-//                             </ItinerarySegment>
-//                         ))}
-//                     </Itinerary>
-//                     <Button style={{padding:5}} onClick={() => setData(null)}>Reset</Button>
-//                 </Box>
-//             ) : (
-                {Object.keys(dayWiseData).length > 0 ? (
+                { Object.keys(dayWiseData).length > 0 ? (
                   <Box>
                     {Object.entries(dayWiseData).map(([day, locations]) => (
                       <div key={day}>
