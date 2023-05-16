@@ -304,6 +304,7 @@ const FormCard = () => {
             })
             .then((response) => {
                 const responseData = response.data.recommended;
+                console.log(response.data)
                 setData(responseData);
                 setLoading(false);
             })
@@ -350,7 +351,7 @@ const FormCard = () => {
                             </ItinerarySegment>
                         ))}
                     </Itinerary>
-                    <Button onClick={() => setData(null)}>Reset</Button>
+                    <Button style={{padding:5}} onClick={() => setData(null)}>Reset</Button>
                 </Box>
             ) : (
                 <Grid
