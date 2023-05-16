@@ -295,7 +295,8 @@ const FormCard = () => {
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
-
+    const [dayWiseData, setDayWiseData] = useState([]);
+    
     const handleSubmit = async () => {
         setLoading(true);
         axios
@@ -305,7 +306,9 @@ const FormCard = () => {
             .then((response) => {
                 const responseData = response.data.recommended;
                 console.log(response.data)
-                setData(responseData);
+//                 setData(responseData);
+                const dayWiseData = groupByDay(responseData);
+                setDayWiseData(dayWiseData);
                 setLoading(false);
             })
             .catch((error) => {
@@ -314,8 +317,18 @@ const FormCard = () => {
             });
     };
 
-    console.log(options);
-    console.log(data);
+//     console.log(options);
+//     console.log(data);
+     const groupByDay = (responseData) => {
+        const dayWiseData = {};
+        responseData.forEach((locations, day) => {
+          dayWiseData[day + 1] = locations.map((location) => ({
+            Name: location.Name,
+            Address: location.Address,
+          }));
+        });
+        return dayWiseData;
+     };
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -334,26 +347,47 @@ const FormCard = () => {
 
     return (
         <>
-            {data ? (
-                <Box>
-                    <Itinerary>
-                        {data.map((location, index) => (
-                            <ItinerarySegment
-                                key={index}
-                                label={location.Name}
-                                noElevation={false}
-                            >
-                                <ItinerarySegmentStop
-                                    city={location.Name}
-                                    station={location.Address}
-                                    minWidth={60}
-                                />
+//             {data ? (
+//                 <Box>
+//                     <Itinerary>
+//                         {data.map((location, index) => (
+//                             <ItinerarySegment
+//                                 key={index}
+//                                 label={location.Name}
+//                                 noElevation={false}
+//                             >
+//                                 <ItinerarySegmentStop
+//                                     city={location.Name}
+//                                     station={location.Address}
+//                                     minWidth={60}
+//                                 />
+//                             </ItinerarySegment>
+//                         ))}
+//                     </Itinerary>
+//                     <Button style={{padding:5}} onClick={() => setData(null)}>Reset</Button>
+//                 </Box>
+//             ) : (
+                {Object.keys(dayWiseData).length > 0 ? (
+                  <Box>
+                    {Object.entries(dayWiseData).map(([day, locations]) => (
+                      <div key={day}>
+                        <Typography variant="h5" component="h2">
+                          Day {day}
+                        </Typography>
+                        <Itinerary>
+                          {locations.map((location, index) => (
+                            <ItinerarySegment key={index} label={location.Name} noElevation={false}>
+                              <ItinerarySegmentStop city={location.Name} station={location.Address} minWidth={60} />
                             </ItinerarySegment>
-                        ))}
-                    </Itinerary>
-                    <Button style={{padding:5}} onClick={() => setData(null)}>Reset</Button>
-                </Box>
-            ) : (
+                          ))}
+                        </Itinerary>
+                      </div>
+                    ))}
+                    <Button style={{ padding: 5 }} onClick={() => setDayWiseData([])}>
+                      Reset
+                    </Button>
+                  </Box>
+                ) : (
                 <Grid
                     container
                     sx={{
