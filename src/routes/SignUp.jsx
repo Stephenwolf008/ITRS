@@ -45,7 +45,7 @@ const SignUp = () => {
           </Form.Group>
 
           <div className="signupbtn">
-            <Button type="Submit">Signup</Button>
+            <Button type="Submit" >Signup</Button>
           </div>
         </Form>
       </div>
