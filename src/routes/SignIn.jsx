@@ -1,40 +1,3 @@
-// import React, { useEffect } from "react";
-// import { GoogleButton } from "react-google-button";
-// import { UserAuth } from "../context/AuthContext";
-// import { useNavigate } from "react-router-dom";
-
-// const SignIn = () => {
-//   const { googleSignIn, user } = UserAuth();
-//   const navigate = useNavigate();
-
-//   const handleGoogleSignIn = async () => {
-//     try {
-//       await googleSignIn();
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-
-//   useEffect(() => {
-//     if (user != null) {
-//       navigate("/home");
-//     }
-//   });
-
-//   return (
-//     // <div className="outterdiv">
-//       <div className="signin">
-//         <h1 className="">Sign in</h1>
-//         <div className="googlebtn">
-//           <GoogleButton onClick={handleGoogleSignIn} />
-//         </div>
-//       </div>
-//     // </div>
-//   );
-// };
-
-// export default SignIn;
-
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Alert } from "react-bootstrap";
@@ -104,7 +67,7 @@ const SignIn = () => {
       <div className="text">
         Don't have an account? <Link to="/signup">Sign up</Link>
       </div>
-    <Footer />
+      <Footer />
     </div>
   );
 };
