@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { useUserAuth } from "../context/AuthContext";
+import Footer from "../components/Footer";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -52,6 +53,7 @@ const SignUp = () => {
       <div className="text">
         Already have an account? <Link to="/">Log In</Link>
       </div>
+      <Footer />
     </div>
   );
 };
