@@ -17,7 +17,7 @@ function Home() {
         btnClass="show"
       />
       <Footer />
-      {/* <SignOut/> */}
+      <SignOut/>
     </div>
   );
 }
