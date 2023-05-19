@@ -82,8 +82,7 @@ const FormCard = () => {
       });
   };
 
-  //     console.log(options);
-  //     console.log(data);
+
   const groupByDay = (responseData) => {
     const dayWiseData = {};
     responseData.forEach((locations, day) => {
@@ -110,6 +109,7 @@ const FormCard = () => {
     });
   };
 
+  
   return (
     <>
       {Object.keys(dayWiseData).length > 0 ? (

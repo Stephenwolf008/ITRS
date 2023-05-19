@@ -3,21 +3,27 @@ import Hero from "../components/Hero";
 import Navbar from "../components/Navbar";
 import HomeImg from "../assets/2.jpg";
 import Footer from "../components/Footer";
-import SignOut from "./SignOut";
+import MapComponent from "../components/MapComponent";
 function Home() {
   return (
     <div>
       <Navbar />
-      <Hero
-        cName="hero"
-        heroImg={HomeImg}
-        title="Your Journey Your Story"
-        btnText="Travel Plan"
-        url="/form"
-        btnClass="show"
-      />
+      <div style={{ display: "flex" }}>
+        <div style={{ flex: "1" }}>
+          <Hero
+            cName="hero"
+            heroImg={HomeImg}
+            title="Your Journey Your Story"
+            btnText="Check Travel Plan"
+            url="/form"
+            btnClass="show"
+          />
+        </div>
+        <div style={{ flex: "1" }} className="map-container">
+          <MapComponent />
+        </div>
+      </div>
       <Footer />
-      {/* <SignOut/> */}
     </div>
   );
 }
