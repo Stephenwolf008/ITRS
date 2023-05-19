@@ -11,4 +11,9 @@ export const Menuitems = [
     cName: "nav-links",
     icon: "fa-solid fa-circle-info",
   },
+  {
+    title: "SignOut",
+    url : "/",
+    cName : "nav-links",
+  }
 ];

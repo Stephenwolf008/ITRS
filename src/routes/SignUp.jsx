@@ -27,7 +27,7 @@ const SignUp = () => {
       <div className="box">
         <h1 className="heading"> Signup</h1>
         {error && <Alert variant="danger">{error}</Alert>}
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} className="container">
           <Form.Group className="email" controlId="formBasicEmail">
             <Form.Control
               type="email"
@@ -45,7 +45,7 @@ const SignUp = () => {
           </Form.Group>
 
           <div className="signupbtn">
-            <Button type="Submit">Sign up</Button>
+            <Button type="Submit">Signup</Button>
           </div>
         </Form>
       </div>

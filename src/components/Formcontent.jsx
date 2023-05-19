@@ -7,6 +7,7 @@ import {
   Autocomplete,
   Button,
   Typography,
+  Box,
 } from "@mui/material";
 import styled from "@emotion/styled";
 import axios from "axios";
@@ -294,6 +295,7 @@ const FormCard = () => {
 
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [dayWiseData, setDayWiseData] = useState([]);
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -302,8 +304,11 @@ const FormCard = () => {
         options: options,
       })
       .then((response) => {
-        const responseData = response.data.recommended;
-        setData(responseData);
+        const responseData = response.data.places_matrix;
+        console.log(response.data);
+        //                 setData(responseData);
+        const dayWiseData = groupByDay(responseData);
+        setDayWiseData(dayWiseData);
         setLoading(false);
       })
       .catch((error) => {
@@ -312,8 +317,18 @@ const FormCard = () => {
       });
   };
 
-  console.log(options);
-  console.log(data);
+  //     console.log(options);
+  //     console.log(data);
+  const groupByDay = (responseData) => {
+    const dayWiseData = {};
+    responseData.forEach((locations, day) => {
+      dayWiseData[day + 1] = locations.map((location) => ({
+        Name: location.Name,
+        Address: location.Address,
+      }));
+    });
+    return dayWiseData;
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -332,51 +347,34 @@ const FormCard = () => {
 
   return (
     <>
-      {data ? (
-        <>
-          {/* {data.map((item, index) => (
-            <Card
-              sx={{
-                minWidth: 275,
-                margin: "10px",
-                padding: "10px",
-                backgroundColor: "cyan",
-              }}
-              key={index}
-            >
-              <CardContent>
-                <Typography
-                  sx={{ fontSize: 20, fontWeight: "bold" }}
-                  color="textPrimary"
-                >
-                  {item.Name}
-                </Typography>
-                <Typography sx={{ marginBottom: 5 }} color="textSecondary">
-                  {item.Address}
-                </Typography>
-                <Typography variant="body2" component="p">
-                  Rating: {item.Rating}
-                </Typography>
-              </CardContent>
-            </Card>
-          ))} */}
-
-          <Itinerary>
-            {data.map((location, index) => (
-              <ItinerarySegment
-                key={index}
-                label={location.Name}
-                noElevation={false}
-              >
-                <ItinerarySegmentStop
-                  city={location.Name}
-                  station={location.Address}
-                  minWidth={60}
-                />
-              </ItinerarySegment>
-            ))}
-          </Itinerary>
-        </>
+      {Object.keys(dayWiseData).length > 0 ? (
+        <Box>
+          {Object.entries(dayWiseData).map(([day, locations]) => (
+            <div key={day}>
+              <Typography variant="h5" component="h2">
+                Day {day}
+              </Typography>
+              <Itinerary>
+                {locations.map((location, index) => (
+                  <ItinerarySegment
+                    key={index}
+                    label={location.Name}
+                    noElevation={false}
+                  >
+                    <ItinerarySegmentStop
+                      city={location.Name}
+                      station={location.Address}
+                      minWidth={60}
+                    />
+                  </ItinerarySegment>
+                ))}
+              </Itinerary>
+            </div>
+          ))}
+          <Button style={{ padding: 5 }} onClick={() => setDayWiseData([])}>
+            Reset
+          </Button>
+        </Box>
       ) : (
         <Grid
           container
