@@ -41,6 +41,7 @@ import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import GoogleButton from "react-google-button";
 import { useUserAuth } from "../context/AuthContext";
+import Footer from "../components/Footer";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -103,6 +104,7 @@ const SignIn = () => {
       <div className="text">
         Don't have an account? <Link to="/signup">Sign up</Link>
       </div>
+    <Footer />
     </div>
   );
 };
