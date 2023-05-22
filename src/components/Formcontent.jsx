@@ -61,6 +61,7 @@ const FormCard = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [dayWiseData, setDayWiseData] = useState([]);
+    const [errorMessage, setErrorMessage] = useState(""); 
 
   const handleSubmit = async () => {
     setLoading(true);
