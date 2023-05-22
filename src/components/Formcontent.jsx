@@ -96,10 +96,43 @@ const FormCard = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setOptions({
-      ...options,
-      [name]: value,
-    });
+     if (name === "startDate") {
+      if (value > options.endDate) {
+        setOptions({
+          ...options,
+          startDate: value,
+          endDate: value,
+        });
+        setErrorMessage("End date cannot be earlier than the start date.");
+      } else {
+        setOptions({
+          ...options,
+          [name]: value,
+        });
+        setErrorMessage("");
+      }
+    } else if (name === "endDate") {
+      if (value < options.startDate) {
+        setOptions({
+          ...options,
+          startDate: value,
+          endDate: value,
+        });
+        setErrorMessage("End date cannot be earlier than the start date.");
+      } else {
+        setOptions({
+          ...options,
+          [name]: value,
+        });
+        setErrorMessage("");
+      }
+    } else {
+      setOptions({
+        ...options,
+        [name]: value,
+      });
+      setErrorMessage("");
+    }
   };
 
   const handleTravelPreferencesChange = (event, values) => {
@@ -112,6 +145,11 @@ const FormCard = () => {
   
   return (
     <>
+      {errorMessage && (
+        <Typography variant="body2" color="error">
+          {errorMessage}
+        </Typography>
+      )}
       {Object.keys(dayWiseData).length > 0 ? (
         <Box>
           {Object.entries(dayWiseData).map(([day, locations]) => (
