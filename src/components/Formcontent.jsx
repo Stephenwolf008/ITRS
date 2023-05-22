@@ -116,8 +116,8 @@ const FormCard = () => {
       if (value < options.startDate) {
         setOptions({
           ...options,
-          startDate: value,
-          endDate: value,
+          startDate: options.startDate,
+          endDate: options.startDate,
         });
         setErrorMessage("End date cannot be earlier than the start date.");
       } else {
@@ -143,6 +143,7 @@ const FormCard = () => {
     });
   };
 
+  const isSubmitDisabled = options.startDate >= options.endDate || options.region === "";
   
   return (
     <>
@@ -259,6 +260,7 @@ const FormCard = () => {
                       variant="contained"
                       color="primary"
                       onClick={handleSubmit}
+                      disabled={isSubmitDisabled}
                     >
                       Submit
                     </LoadingButton>
