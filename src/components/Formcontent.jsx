@@ -143,7 +143,7 @@ const FormCard = () => {
     });
   };
 
-  const isSubmitDisabled = options.startDate >= options.endDate || options.region === "";
+  const isSubmitDisabled = options.startDate > options.endDate || options.region === "";
   
   return (
     <>
